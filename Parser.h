@@ -83,7 +83,9 @@ void Parser::parseS(vector<Token> tokens) {
 
 bool Parser::parse(vector<Token> tokens) {
 
+    parseS(tokens);
 
+    return true;
 
 }
 
