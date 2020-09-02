@@ -11,7 +11,7 @@ class Parser {
 public:
     //constructor
     Parser();
-    bool parse(vector<Token> tokens);
+    void parse(vector<Token> tokens);
 private:
     bool match(vector<Token> tokens, Token expectedToken);
     void parseS(vector<Token> tokens);
@@ -79,13 +79,15 @@ void Parser::parseS(vector<Token> tokens) {
         exit(0);
     }
 
-}
-
-bool Parser::parse(vector<Token> tokens) {
-
+    match(tokens, Token("register", ""));
     parseS(tokens);
 
-    return true;
+}
+
+void Parser::parse(vector<Token> tokens) {
+
+    parseS(tokens);
+    cout << "The input is a well formed expression." << endl;
 
 }
 

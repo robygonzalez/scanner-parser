@@ -5,7 +5,7 @@
 #include <vector>
 #include <ctype.h>
 #include "Scanner.h"
-//#include "Parser.h"
+#include "Parser.h"
 
 using namespace std;
 
@@ -25,7 +25,9 @@ int main() {
         }
         scanner.scan(linea);
     }
-    //scanner.printTokens();
+    scanner.printTokens();
 
     //Empieza el parser aqui :)
+    Parser parser;
+    parser.parse(scanner.getTokens());
 }
