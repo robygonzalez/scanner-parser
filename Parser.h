@@ -24,9 +24,8 @@ Parser::Parser() {
 bool Parser::match(vector<Token> &tokens, Token expectedToken) {
 
     if (!tokens.empty()) {
-        if (tokens[0].getType() == expectedToken.getType()
-            // && tokens[0].getValue() == expectedToken.getValue()
-            ) {
+        if (tokens[0].getType() == expectedToken.getType()) {
+            cout << expectedToken.getType() << endl;
             tokens.erase(tokens.begin());
             return true;
         } else {
@@ -56,23 +55,21 @@ void Parser::parseS(vector<Token> tokens) {
     string type = tokens[0].getType();
 
     if (type == "EOF") {
-        cout << "EOF" << endl;
         match(tokens, Token("EOF", ";"));
         return;
 
     } else if (type == "operation") {
-        cout << "operation" << endl;
         match(tokens, Token("operation", ""));
         match(tokens, Token("register", ""));
 
     } else if (type == "assignment") {
-        cout << "assignment" << endl;
         match(tokens, Token("assignment", ""));
         if (tokens[0].getType() == "register") {
             match(tokens, Token("register", ""));
         } else if (tokens[0].getType() == "integer") {
             match(tokens, Token("integer", ""));
         }
+
     } else {
         cout << "ERROR: Unexpected '" << type << "'." << endl;
         cout << "The system will halt." << endl;
@@ -80,6 +77,7 @@ void Parser::parseS(vector<Token> tokens) {
     }
 
     match(tokens, Token("register", ""));
+    cout << endl;
     parseS(tokens);
 
 }
