@@ -5,18 +5,24 @@
 #include <vector>
 #include <ctype.h>
 #include "Scanner.h"
-//#include "Parser.h"
+#include "Parser.h"
 
 using namespace std;
 
 int main() {
+
+    // Input file
     string linea;
     ifstream archivo;
+
     archivo.open("prueba.txt"); 
-    if(archivo.fail()) {
+
+    if (archivo.fail()) {
         cout << "Hubo un problema al abrir el archivo" << endl;
         exit(0);
     }
+
+    // Scanner
     Scanner scanner;
     while (!archivo.eof()) {
         getline(archivo, linea);
@@ -25,7 +31,10 @@ int main() {
         }
         scanner.scan(linea);
     }
-    //scanner.printTokens();
+    scanner.printTokens();
+    cout << endl;
 
-    //Empieza el parser aqui :)
+    // Parser
+    Parser parser;
+    parser.parse(scanner.getTokens());
 }
