@@ -13,7 +13,7 @@ public:
     Parser();
     void parse(vector<Token> tokens);
 private:
-    bool match(vector<Token> tokens, Token expectedToken);
+    bool match(vector<Token> &tokens, Token expectedToken);
     void parseS(vector<Token> tokens);
 };
 
@@ -21,7 +21,7 @@ Parser::Parser() {
 
 }
 
-bool Parser::match(vector<Token> tokens, Token expectedToken) {
+bool Parser::match(vector<Token> &tokens, Token expectedToken) {
 
     if (!tokens.empty()) {
         if (tokens[0].getType() == expectedToken.getType()
